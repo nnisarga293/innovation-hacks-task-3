@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./db");
-const { port } = require("./config");
 
 const userRoutes = require("./routes/users");
 const projectRoutes = require("./routes/projects");
@@ -34,8 +33,6 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-connectDB().then(() => {
-  app.listen(port, "0.0.0.0", () => {
-    console.log(`Server running on port ${port}`);
-  });
-});
+connectDB();
+
+module.exports = app;
